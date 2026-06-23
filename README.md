@@ -1,68 +1,69 @@
-# Car Dealership Management System
+# oaqjp-final-project-emb-ai
 
-This repository contains a full‑stack web application for managing a car dealership inventory, sales, and customer interactions.  
-The backend is built with **Django** and **Django REST Framework**, providing a robust API for CRUD operations on vehicles, customers, and orders.  
-The frontend is a **React** single‑page application that consumes the API and offers a modern, responsive user interface.
+## Project Overview
+This repository contains the final capstone project for the IBM Skills Network course **Developing AI Applications with Python and Flask**. The project implements an **Emotion Detection** web application using IBM Watson Natural Language Processing (NLP) services, packaged as a Flask API and deployed locally for testing.
 
-## Features
-- **Vehicle inventory**: Add, edit, delete, and search vehicles with detailed specifications.
-- **Customer management**: Store customer contact information and purchase history.
-- **Order processing**: Create and track sales orders, generate invoices, and manage payments.
-- **Authentication & Authorization**: Secure login with JWT tokens and role‑based access control.
-- **Responsive UI**: Built with React, React Router, and Material‑UI for a seamless experience on desktop and mobile devices.
-- **Docker support**: Containerized services for easy deployment.
+### Key Features
+- **Emotion detection** using Watson NLP library.
+- Properly formatted JSON output with detected emotions and confidence scores.
+- Comprehensive unit tests (`test_emotion_detection.py`) ensuring correct functionality.
+- Flask web server (`server.py`) exposing a REST endpoint for client interaction.
+- Error handling for invalid or empty input (HTTP 400 responses).
+- Static code analysis integration with `pylint` achieving a perfect score.
 
-## Getting Started
-
-### Prerequisites
-- Docker & Docker‑Compose
-- Node.js (>=14) and npm
-- Python 3.10+
-
-### Development Setup
-```bash
-# Clone the repository
-git clone https://github.com/your‑username/car‑dealership‑app.git
-cd car-dealership-app
-
-# Backend (Django)
-cd backend
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
-
-# Frontend (React)
-cd ../frontend
-npm install
-npm start
+### Repository Structure
+```
+oaqjp-final-project-emb-ai/
+│
+├── emotion_detection.py          # Core emotion detection logic
+├── EmotionDetection/               # Python package
+│   ├── __init__.py                # Package initializer
+│   └── ...                         # Additional modules (if any)
+├── server.py                       # Flask application exposing the API
+├── test_emotion_detection.py       # Unit tests for the emotion detector
+├── requirements.txt                # Project dependencies
+├── README.md                       # Project documentation (this file)
+└── screenshots/
+    ├── 6b_deployment_test.png
+    └── 7c_error_handling_interface.png
 ```
 
-### Running with Docker
-```bash
-docker-compose up --build
-```
+### How to Run the Application
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/oaqjp-final-project-emb-ai.git
+   cd oaqjp-final-project-emb-ai
+   ```
 
-The API will be available at `http://localhost:8000/api/` and the React app at `http://localhost:3000/`.
+2. **Create a virtual environment and install dependencies**
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   pip install -r requirements.txt
+   ```
 
-## Project Structure
-```
-car-dealership-app/
-├── backend/                # Django project
-│   ├── dealership/        # Core app
-│   ├── manage.py
-│   └── requirements.txt
-├── frontend/               # React application
-│   ├── src/
-│   └── package.json
-├── docker-compose.yml
-└── README.md
-```
+3. **Set up IBM Watson credentials**
+   - Export your Watson API key and URL as environment variables:
+     ```bash
+     export WATSON_API_KEY=your_api_key
+     export WATSON_URL=your_service_url
+     ```
 
-## License
-This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
+4. **Run the Flask server**
+   ```bash
+   python server.py
+   ```
 
----
+5. **Test the endpoint**
+   ```bash
+   curl -X POST http://127.0.0.1:5000/emotion-detection \
+        -H "Content-Type: application/json" \
+        -d '{"text": "I am thrilled about the new project!"}'
+   ```
 
-*For more information, refer to the documentation in the `docs/` folder.*
+### License
+This project is licensed under the MIT License.
+
+--- 
+
+*Prepared for the IBM Skills Network capstone submission.*
